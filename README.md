@@ -8,7 +8,7 @@
 
 | Behavior | Input | Output |
 | ------------- |:-------------:| :-----------:|
-
+|   |   |
 
 
 ## Setup/Installation Requirements
