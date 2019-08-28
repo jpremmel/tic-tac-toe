@@ -1,14 +1,17 @@
 // FRONT END
 var myGame = new Game();
-console.log(myGame);
 
 function attachClickListeners() {
   $(".col-xs-4").on("click", ".card", function() {
     var clicked = this.id;
-    myGame.logClicks(clicked);
-    console.log(clicked);
-    console.log(myGame.increaseClickCount());
+    determineClickedSpace(clicked);
   });
+}
+
+function determineClickedSpace(id) {
+  if (!$("." + id).text()) {
+    myGame.logClicks(id);
+  }
 }
 
 function displayMark(id, symbol) {
@@ -35,25 +38,18 @@ function Game() {
   this.clickCounter = 0;
 }
 
-Game.prototype.increaseClickCount = function() {
-  return this.clickCounter++
-}
-
 Game.prototype.logClicks = function(htmlID) {
+  console.log(this.clickCounter++);
   if (this.clickCounter % 2 === 0) {
     this.playerX.clicks.push(htmlID);
     for (var i = 0; i < this.playerX.clicks.length; i++) {
       displayMark(this.playerX.clicks[i], "X");
     }
-
-
   } else if (this.clickCounter % 2 === 1) {
     this.playerO.clicks.push(htmlID);
     for (var i = 0; i < this.playerO.clicks.length; i++) {
       displayMark(this.playerO.clicks[i], "O");
     }
-
-
   }
 }
 
