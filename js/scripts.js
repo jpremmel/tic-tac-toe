@@ -1,7 +1,12 @@
 // FRONT END
+var myGame = new Game();
+
 function attachClickListeners() {
   $(".col-xs-4").on("click", ".card", function() {
-    console.log("WE GOT HERE");
+    var clicked = this.id;
+    console.log(clicked);
+    myGame.clickCounter++;
+    console.log(myGame.clickCounter);
   });
 }
 
@@ -15,10 +20,8 @@ $(document).ready(function(){
 
 
 // BACK END
-function Game (playerX, playerO) {
-  this.playerX,
-  this.playerO
-
+function Game () {
+  this.clickCounter = 0;
 }
 
 function Board () {
@@ -42,10 +45,11 @@ Space.prototype.mark = function(Player) {
   //method for being marked by either playerX or playerO
 }
 
-function Player (name, symbol) {
+function Player (name) {
   this.name = name;
-  this.symbol = symbol;
+  this.clicks = [];
 }
+
 
 Player.prototype.symbol = function() {
   return this.symbol;
