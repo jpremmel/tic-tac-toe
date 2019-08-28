@@ -1,3 +1,13 @@
 h1 {
   text-align: center;
 }
+
+.card {
+  display: block;
+  width: 120px;
+  height: 120px;
+}
+
+.row {
+  text-align: center;
+}
