@@ -32,6 +32,7 @@ $(document).ready(function() {
     // this is where we take the input values (player's names) and assign them to the name property of each player object
     myGame.playerX.name = playerXname;
     myGame.playerO.name = playerOname;
+    $(".grid").show();
   });
 });
 

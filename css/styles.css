@@ -11,3 +11,7 @@ h1 {
 .row {
   text-align: center;
 }
+
+.grid {
+  display: none;
+}
