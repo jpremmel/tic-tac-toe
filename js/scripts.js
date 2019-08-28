@@ -1,5 +1,6 @@
 // FRONT END
 var myGame = new Game();
+// console.log(myGame.playerX.name);
 
 function attachClickListeners() {
   $(".col-xs-4").on("click", ".card", function() {
@@ -12,16 +13,23 @@ function attachClickListeners() {
 
 $(document).ready(function(){
   attachClickListeners();
-  $("gameForm").submit(function(event){
+  $(".gameForm").submit(function(event){
     event.preventDefault();
+    var playerXname = $("#playerXname").val();
+    var playerOname = $("#playerOname").val()
+    console.log(playerXname);
+    console.log(playerOname);
 
   });
 });
 
 
 // BACK END
-function Game () {
+function Game (name1, name2) {
   this.clickCounter = 0;
+  this.playerX = new Player(name1);
+  this.playerO = new Player(name2);
+
 }
 
 function Board () {
@@ -42,15 +50,16 @@ function Space (col, row) {
 }
 
 Space.prototype.mark = function(Player) {
-  //method for being marked by either playerX or playerO
+
 }
 
-function Player (name) {
+function Player (name, symbol) {
   this.name = name;
+  this.symbol = symbol;
   this.clicks = [];
 }
 
 
-Player.prototype.symbol = function() {
-  return this.symbol;
+Player.prototype.assignSymbol = function() {
+
 }
