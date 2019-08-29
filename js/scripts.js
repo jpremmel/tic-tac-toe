@@ -24,13 +24,16 @@ function displayMark(id, symbol) {
 function declareWinner(winner) {
   console.log(winner);
   if (winner === "X") {
+    $("#game-result").text("Player X wins!");
     $(".end").show();
   } else if (winner === "O") {
+    $("#game-result").text("Player O wins!");
     $(".end").show();
   }
 }
 
 function declareTie() {
+  $("#game-result").text("It's a tie!");
   $(".end").show();
 }
 
@@ -49,14 +52,17 @@ $(document).ready(function() {
     $(".end").hide();
     myGame.emptyClicks();
     $(".space").text("");
-  })
+    $("#game-result").text("");
+
+  });
   $("#newgame").click(function() {
     $(".end").hide();
     myGame.emptyClicks();
     $(".space").text("");
     $("input#playerXname").val("");
     $("input#playerOname").val("");
-  })
+    $("#game-result").text("");
+  });
 });
 
 
@@ -100,6 +106,7 @@ Game.prototype.logClicks = function(htmlID) {
 Game.prototype.emptyClicks = function() {
   this.playerX.clicks = [];
   this.playerO.clicks = [];
+  this.clickCounter = 0; 
 }
 
 Player.prototype.findWinner = function() {
