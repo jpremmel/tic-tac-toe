@@ -13,9 +13,6 @@
 }
 
 .namedisplay {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
   width: 50%;
   float: left;
 }
