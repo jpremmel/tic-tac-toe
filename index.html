@@ -9,92 +9,97 @@
   </head>
   <body>
     <div class="container">
-      <h1>Tic Tac Toe</h1>
-      <form class="gameForm">
-
-        <label for="playerXname"> Player X:</label>
-        <input id="playerXname" type="text" class="form-control" required>
-
-        <label for="playerOname"> Player O:</label>
-        <input id="playerOname" type="text" class="form-control" required>
-
-        <button type="submit" name="button">Play!</button>
-      </form>
-      <div class="grid">
-        <div class="row">
-          <div class="col-xs-4">
-            <div class="card" id="c1r1">
-              <div class="card-body">
-                <h1><span class="space c1r1"></span></h1>
+      <div class="card" id="background-card">
+        <h1>Tic Tac Toe</h1>
+        <form class="gameForm">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="playerXname"><strong>Player X:</strong></label>
+              <input id="playerXname" type="text" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label for="playerOname"><strong>Player O:</strong></label>
+              <input id="playerOname" type="text" class="form-control" required>
+            </div>
+          </div>
+          <button type="submit" class="btn"><strong>Play!</strong></button>
+        </form>
+        <div class="grid">
+          <div class="row">
+            <div class="col-xs-4">
+              <div class="game card" id="c1r1">
+                <div class="card-body">
+                  <h1><span class="space c1r1"></span></h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="game card" id="c2r1">
+                <div class="card-body">
+                  <h1><span class="space c2r1"></span></h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="game card" id="c3r1">
+                <div class="card-body">
+                  <h1><span class="space c3r1"></span></h1>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-xs-4">
-            <div class="card" id="c2r1">
-              <div class="card-body">
-                <h1><span class="space c2r1"></span></h1>
+          <div class="row">
+            <div class="col-xs-4">
+              <div class="game card" id="c1r2">
+                <div class="card-body">
+                  <h1><span class="space c1r2"></span></h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="game card" id="c2r2">
+                <div class="card-body">
+                  <h1><span class="space c2r2"></span></h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="game card" id="c3r2">
+                <div class="card-body">
+                  <h1><span class="space c3r2"></span></h1>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-xs-4">
-            <div class="card" id="c3r1">
-              <div class="card-body">
-                <h1><span class="space c3r1"></span></h1>
+          <div class="row">
+            <div class="col-xs-4">
+              <div class="game card" id="c1r3">
+                <div class="card-body">
+                  <h1><span class="space c1r3"></span> </h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="game card" id="c2r3">
+                <div class="card-body">
+                  <h1><span class="space c2r3"></span></h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="game card" id="c3r3">
+                <div class="card-body">
+                  <h1><span class="space c3r3"></span></h1>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-4">
-            <div class="card" id="c1r2">
-              <div class="card-body">
-                <h1><span class="space c1r2"></span></h1>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-4">
-            <div class="card" id="c2r2">
-              <div class="card-body">
-                <h1><span class="space c2r2"></span></h1>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-4">
-            <div class="card" id="c3r2">
-              <div class="card-body">
-                <h1><span class="space c3r2"></span></h1>
-              </div>
-            </div>
-          </div>
+        <h1 id="game-result"></h1>
+        <div class="end">
+            <button id="rematch" class="btn"><strong>Rematch</strong></button>
+            <button id="newgame" class="btn"><strong>Start Over</strong></button>
         </div>
-        <div class="row">
-          <div class="col-xs-4">
-            <div class="card" id="c1r3">
-              <div class="card-body">
-                <h1><span class="space c1r3"></span> </h1>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-4">
-            <div class="card" id="c2r3">
-              <div class="card-body">
-                <h1><span class="space c2r3"></span></h1>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-4">
-            <div class="card" id="c3r3">
-              <div class="card-body">
-                <h1><span class="space c3r3"></span></h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h1 id="game-result"></h1>
-      <div class="end">
-          <button type="button" id="rematch">Rematch</button>
-          <button type="button" id="newgame">Start Over</button>
       </div>
     </div>
   </body>

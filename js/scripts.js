@@ -3,7 +3,7 @@
 var myGame = new Game();
 // this attaches click listeners to the cards in our html
 function attachClickListeners() {
-  $(".card").on("click", function() {
+  $(".game").on("click", function() {
     determineClickedSpace(this.id);
   });
 }
@@ -73,7 +73,7 @@ function Game() {
 Game.prototype.logClicks = function(htmlID) {
   console.log(this.clickCounter++);
   // the % will return a 0 or a 1 depending on whether the clickCounter is even or odd
-  if (this.clickCounter % 2 === 1) {
+  if (this.clickCounter % 2 === 0) {
     this.playerX.clicks.push(htmlID);
     // loops through playerX's click array to mark clicked spaces with an X
     for (var i = 0; i < this.playerX.clicks.length; i++) {
@@ -83,7 +83,7 @@ Game.prototype.logClicks = function(htmlID) {
     if (this.playerX.findWinner()) {
     declareWinner(this.playerX.symbol);
     }
-  } else if (this.clickCounter % 2 === 0) {
+  } else if (this.clickCounter % 2 === 1) {
     this.playerO.clicks.push(htmlID);
     for (var i = 0; i < this.playerO.clicks.length; i++) {
       displayMark(this.playerO.clicks[i], "O");
