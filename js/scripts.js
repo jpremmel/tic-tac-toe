@@ -21,7 +21,17 @@ function displayMark(id, symbol) {
   $("." + id).text(symbol);
 }
 
+function declareWinner(winner) {
+  console.log(winner);
+  if (winner === "X") {
+    $(".end").show();
+  } else if (winner === "O") {
+    $(".end").show();
+  }
+}
+
 $(document).ready(function() {
+  $(".grid").hide();
   // click listener is what tells us which space on the board has been clicked
   attachClickListeners();
   $(".gameForm").submit(function(event) {
@@ -31,6 +41,14 @@ $(document).ready(function() {
     myGame.playerO.name = $("#playerOname").val();
     $(".grid").show();
   });
+  $("#rematch").click(function() {
+    $(".end").hide();
+    myGame.emptyClicks();
+    $(".space").text("");
+  })
+  $("#newgame").click(function() {
+
+  })
 });
 
 
@@ -38,8 +56,8 @@ $(document).ready(function() {
 // game constructor
 function Game() {
   this.board = new Board();
-  this.playerX = new Player();
-  this.playerO = new Player();
+  this.playerX = new Player("X");
+  this.playerO = new Player("O");
   // this is an empty number var we start at zero so that we can add "clicks" to it
   this.clickCounter = 0;
 }
@@ -55,7 +73,7 @@ Game.prototype.logClicks = function(htmlID) {
       displayMark(this.playerX.clicks[i], "X");
     }
     if (this.playerX.findWinner()) {
-    console.log("PLAYER X WINS");
+    declareWinner(this.playerX.symbol);
     }
   } else if (this.clickCounter % 2 === 1) {
     this.playerO.clicks.push(htmlID);
@@ -63,9 +81,14 @@ Game.prototype.logClicks = function(htmlID) {
       displayMark(this.playerO.clicks[i], "O");
     }
     if (this.playerO.findWinner()) {
-      console.log("PLAYER O WINS");
+      declareWinner(this.playerO.symbol);
     }
   }
+}
+
+Game.prototype.emptyClicks = function() {
+  this.playerX.clicks = [];
+  this.playerO.clicks = [];
 }
 
 Player.prototype.findWinner = function() {
@@ -84,9 +107,9 @@ Player.prototype.findWinner = function() {
   }
 }
 
-function Player() {
+function Player(symbol) {
   this.name;
-  this.symbol;
+  this.symbol = symbol;
   this.clicks = [];
 }
 
