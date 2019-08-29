@@ -1,14 +1,12 @@
 // FRONT END
 // global var, creates an instance of the game object called myGame
 var myGame = new Game();
-
 // this attaches click listeners to the cards in our html
 function attachClickListeners() {
   $(".card").on("click", function() {
     determineClickedSpace(this.id);
   });
 }
-
 // this is how we stop the same space from getting clicked twice.
 function determineClickedSpace(id) {
   // id refers to the parameter of this function, this function is called above, but defined here
@@ -20,7 +18,7 @@ function determineClickedSpace(id) {
 function displayMark(id, symbol) {
   $("." + id).text(symbol);
 }
-
+// this function displays
 function declareWinner(winner) {
   console.log(winner);
   if (winner === "X") {
@@ -31,12 +29,10 @@ function declareWinner(winner) {
     $(".end").show();
   }
 }
-
 function declareTie() {
   $("#game-result").text("It's a tie!");
   $(".end").show();
 }
-
 $(document).ready(function() {
   $(".grid").hide();
   // click listener is what tells us which space on the board has been clicked
@@ -48,13 +44,14 @@ $(document).ready(function() {
     myGame.playerO.name = $("#playerOname").val();
     $(".grid").show();
   });
+  // this rematch  click function tells the page what to do when the rematch button is clicked
   $("#rematch").click(function() {
     $(".end").hide();
     myGame.emptyClicks();
     $(".space").text("");
     $("#game-result").text("");
-
   });
+  // this new game function tells the page what to do when the new game button is clicked
   $("#newgame").click(function() {
     $(".end").hide();
     myGame.emptyClicks();
@@ -64,12 +61,9 @@ $(document).ready(function() {
     $("#game-result").text("");
   });
 });
-
-
 // BACK END
 // game constructor
 function Game() {
-  this.board = new Board();
   this.playerX = new Player("X");
   this.playerO = new Player("O");
   // this is an empty number var we start at zero so that we can add "clicks" to it
@@ -86,6 +80,7 @@ Game.prototype.logClicks = function(htmlID) {
     for (var i = 0; i < this.playerX.clicks.length; i++) {
       displayMark(this.playerX.clicks[i], "X");
     }
+    // this if statement calls the findWinner function to see if playerX has won. If findWinner returns true, it calls the declare winner function. We made the declareWInner function specicifcally to be called here- its in the front end because its pops up on the UI (changes the HTML).
     if (this.playerX.findWinner()) {
     declareWinner(this.playerX.symbol);
     }
@@ -102,13 +97,14 @@ Game.prototype.logClicks = function(htmlID) {
     declareTie();
   }
 }
-
+// this method empties the click arrays and click counter. its called above when the user clickc the rematch/start over buttons
 Game.prototype.emptyClicks = function() {
   this.playerX.clicks = [];
   this.playerO.clicks = [];
-  this.clickCounter = 0; 
+  this.clickCounter = 0;
 }
 
+// this is the back end method to check and see if anyone has won the game by checking the contents ofa players click array. this function is called by each player after each click.
 Player.prototype.findWinner = function() {
   console.log(this.clicks);
   if (this.clicks.includes("c1r1") && this.clicks.includes("c2r1") && this.clicks.includes("c3r1") ||
@@ -124,39 +120,8 @@ Player.prototype.findWinner = function() {
     return false;
   }
 }
-
 function Player(symbol) {
   this.name;
   this.symbol = symbol;
   this.clicks = [];
 }
-
-
-Player.prototype.assignSymbol = function() {
-
-}
-
-// ths is our grid- we made coords. based off the cols and rows
-function Board() {
-  this.spaceC1R1 = "c1r1";
-  this.spaceC2R1 = "c2r1";
-  this.spaceC3R1 = "c3r1";
-  this.spaceC1R2 = "c1r2";
-  this.spaceC2R2 = "c2r2";
-  this.spaceC3R2 = "c3r2";
-  this.spaceC1R3 = "c1r3";
-  this.spaceC2R3 = "c2r3";
-  this.spaceC3R3 = "c3r3";
-}
-
-Board.prototype.emptyGrid = function() {
-  //method to create 3x3 grid of spaces
-}
-
-Board.prototype.findWinner = function() {
-  //look for three in a row
-}
-
-// Board.prototype.mark = function(htmlID) {
-//
-// }
