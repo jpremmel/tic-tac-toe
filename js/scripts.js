@@ -34,7 +34,6 @@ function declareTie() {
   $(".end").show();
 }
 $(document).ready(function() {
-  $(".grid").hide();
   // click listener is what tells us which space on the board has been clicked
   attachClickListeners();
   $(".gameForm").submit(function(event) {
@@ -42,7 +41,7 @@ $(document).ready(function() {
     // this is where we take the input values (player's names) and assign them to the name property of each player object
     myGame.playerX.name = $("#playerXname").val();
     myGame.playerO.name = $("#playerOname").val();
-    $(".grid").show();
+    $(".grid").addClass("gridDisplay").show();
   });
   // this rematch  click function tells the page what to do when the rematch button is clicked
   $("#rematch").click(function() {
@@ -74,7 +73,7 @@ function Game() {
 Game.prototype.logClicks = function(htmlID) {
   console.log(this.clickCounter++);
   // the % will return a 0 or a 1 depending on whether the clickCounter is even or odd
-  if (this.clickCounter % 2 === 0) {
+  if (this.clickCounter % 2 === 1) {
     this.playerX.clicks.push(htmlID);
     // loops through playerX's click array to mark clicked spaces with an X
     for (var i = 0; i < this.playerX.clicks.length; i++) {
@@ -84,7 +83,7 @@ Game.prototype.logClicks = function(htmlID) {
     if (this.playerX.findWinner()) {
     declareWinner(this.playerX.symbol);
     }
-  } else if (this.clickCounter % 2 === 1) {
+  } else if (this.clickCounter % 2 === 0) {
     this.playerO.clicks.push(htmlID);
     for (var i = 0; i < this.playerO.clicks.length; i++) {
       displayMark(this.playerO.clicks[i], "O");

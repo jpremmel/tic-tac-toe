@@ -15,11 +15,14 @@ body {
 }
 
 .grid {
-  display: inline-block;
+  display: none;
 }
 
-.input{
-  size: 20px;
+.gridDisplay {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .end {
