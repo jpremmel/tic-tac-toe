@@ -3,6 +3,7 @@ h1 {
 }
 
 .card {
+  border-radius: 0;
   display: block;
   width: 120px;
   height: 100px;
@@ -14,4 +15,60 @@ h1 {
 
 .grid {
   display: none;
+}
+
+#c2r2 {
+  border-top-width: thick;
+  border-bottom-width: thick;
+  border-right-width: thick;
+  border-left-width: thick;
+  border-color: black;
+}
+
+#c2r1 {
+  border-top: none;
+  border-bottom: none;
+  border-right-width: thick;
+  border-left-width: thick;
+  border-color: black;
+}
+
+#c2r3 {
+  border-top: none;
+  border-bottom: none;
+  border-right-width: thick;
+  border-left-width: thick;
+  border-color: black;
+}
+
+#c1r2 {
+  border-top-width: thick;
+  border-bottom-width: thick;
+  border-right: none;
+  border-left: none;
+  border-color: black;
+}
+
+#c3r2 {
+  border-top-width: thick;
+  border-bottom-width: thick;
+  border-right: none;
+  border-left: none;
+  border-color: black;
+}
+
+#c1r1 {
+  border: none;
+}
+
+#c1r3 {
+  border: none;
+}
+
+#c3r1 {
+  border: none;
+}
+
+#c3r3 {
+  border: none;
 }
