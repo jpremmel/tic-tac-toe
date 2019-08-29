@@ -1,18 +1,4 @@
 
-#background-card {
-  padding: 40px;
-  margin-top: 40px;
-  border-color: #0e118b;
-  border-width: 2px;
-}
-
-.game {
-  border-radius: 0;
-  display: block;
-  width: 120px;
-  height: 100px;
-}
-
 .row {
   text-align: center;
 }
@@ -26,6 +12,14 @@
   display: none;
 }
 
+.namedisplay {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  float: left;
+}
+
 .grid {
   display: none;
 }
@@ -37,12 +31,20 @@
   text-align: center;
 }
 
+.game {
+  border-radius: 0;
+  display: block;
+  width: 120px;
+  height: 100px;
+}
+
 .btn {
   margin: 20px;
   background-color: #e3edf7;
   border-color: #0e118b;
   border-width: 2px;
 }
+
 .end {
   display: none;
 }
@@ -107,6 +109,13 @@
 
 #c3r3 {
   border: none;
+}
+
+#background-card {
+  padding: 40px;
+  margin-top: 40px;
+  border-color: #0e118b;
+  border-width: 2px;
 }
 
 body {

@@ -20,7 +20,6 @@ function displayMark(id, symbol) {
 }
 // this function displays
 function declareWinner(winner) {
-  console.log(winner);
   if (!$("#game-result").text()) {
     if (winner === "X") {
       $("#game-result").text($("#playerX").text() + " wins!");
@@ -38,6 +37,7 @@ function declareTie() {
     $(".end").show();
   }
 }
+
 $(document).ready(function() {
   // click listener is what tells us which space on the board has been clicked
   attachClickListeners();
@@ -61,7 +61,7 @@ $(document).ready(function() {
   });
   // this new game function tells the page what to do when the new game button is clicked
   $("#newgame").click(function() {
-    $("#gameForm").show();
+    $(".gameForm").show();
     $("#players").hide();
     $(".grid").hide();
     $(".end").hide();
@@ -72,6 +72,7 @@ $(document).ready(function() {
     $("#game-result").text("");
   });
 });
+
 // BACK END
 // game constructor
 function Game() {
@@ -83,7 +84,7 @@ function Game() {
 
 // this method logs the clicks and increase 1 to the clickCounter var.
 Game.prototype.logClicks = function(htmlID) {
-  console.log(this.clickCounter++);
+  this.clickCounter++;
   // the % will return a 0 or a 1 depending on whether the clickCounter is even or odd
   if (this.clickCounter % 2 === 0) {
     this.playerX.clicks.push(htmlID);
@@ -115,9 +116,13 @@ Game.prototype.emptyClicks = function() {
   this.clickCounter = 0;
 }
 
+function Player(symbol) {
+  this.name;
+  this.symbol = symbol;
+  this.clicks = [];
+}
 // this is the back end method to check and see if anyone has won the game by checking the contents ofa players click array. this function is called by each player after each click.
 Player.prototype.findWinner = function() {
-  console.log(this.clicks);
   if (this.clicks.includes("c1r1") && this.clicks.includes("c2r1") && this.clicks.includes("c3r1") ||
     this.clicks.includes("c3r1") && this.clicks.includes("c3r2") && this.clicks.includes("c3r3") ||
     this.clicks.includes("c1r3") && this.clicks.includes("c2r3") && this.clicks.includes("c3r3") ||
@@ -130,10 +135,4 @@ Player.prototype.findWinner = function() {
   } else {
     return false;
   }
-}
-
-function Player(symbol) {
-  this.name;
-  this.symbol = symbol;
-  this.clicks = [];
 }
