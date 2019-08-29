@@ -1,6 +1,6 @@
 # _Tic-Tac-Toe_
 
-#### _Two players compete to get three in a row, 28 Aug 2019_
+#### _Two players compete to get three in a row, 29 Aug 2019_
 
 #### By _**Sofia Giordano and Jacqueline Remmel**_
 

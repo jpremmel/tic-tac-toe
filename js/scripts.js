@@ -77,7 +77,7 @@ Player.prototype.findWinner = function() {
       this.clicks.includes("c2r1") && this.clicks.includes("c2r2") && this.clicks.includes("c2r3") ||
       this.clicks.includes("c1r2") && this.clicks.includes("c2r2") && this.clicks.includes("c3r2") ||
       this.clicks.includes("c1r1") && this.clicks.includes("c2r2") && this.clicks.includes("c3r3") ||
-      this.clicks.includes("c3r1") && this.clicks.includes("c2r2") && this.clicks.includes("c1r3")    ) {
+      this.clicks.includes("c3r1") && this.clicks.includes("c2r2") && this.clicks.includes("c1r3")) {
     return true;
   } else {
     return false;
