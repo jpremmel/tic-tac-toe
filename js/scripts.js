@@ -4,9 +4,8 @@ var myGame = new Game();
 
 // this attaches click listeners to the cards in our html
 function attachClickListeners() {
-  $(".col-xs-4").on("click", ".card", function() {
-    var clicked = this.id;
-    determineClickedSpace(clicked);
+  $(".card").on("click", function() {
+    determineClickedSpace(this.id);
   });
 }
 
@@ -27,11 +26,9 @@ $(document).ready(function() {
   attachClickListeners();
   $(".gameForm").submit(function(event) {
     event.preventDefault();
-    var playerXname = $("#playerXname").val();
-    var playerOname = $("#playerOname").val();
     // this is where we take the input values (player's names) and assign them to the name property of each player object
-    myGame.playerX.name = playerXname;
-    myGame.playerO.name = playerOname;
+    myGame.playerX.name = $("#playerXname").val();
+    myGame.playerO.name = $("#playerOname").val();
     $(".grid").show();
   });
 });
@@ -57,11 +54,33 @@ Game.prototype.logClicks = function(htmlID) {
     for (var i = 0; i < this.playerX.clicks.length; i++) {
       displayMark(this.playerX.clicks[i], "X");
     }
+    if (this.playerX.findWinner()) {
+    console.log("PLAYER X WINS");
+    }
   } else if (this.clickCounter % 2 === 1) {
     this.playerO.clicks.push(htmlID);
     for (var i = 0; i < this.playerO.clicks.length; i++) {
       displayMark(this.playerO.clicks[i], "O");
     }
+    if (this.playerO.findWinner()) {
+      console.log("PLAYER O WINS");
+    }
+  }
+}
+
+Player.prototype.findWinner = function() {
+  console.log(this.clicks);
+  if (this.clicks.includes("c1r1") && this.clicks.includes("c2r1") && this.clicks.includes("c3r1") ||
+      this.clicks.includes("c3r1") && this.clicks.includes("c3r2") && this.clicks.includes("c3r3") ||
+      this.clicks.includes("c1r3") && this.clicks.includes("c2r3") && this.clicks.includes("c3r3") ||
+      this.clicks.includes("c1r1") && this.clicks.includes("c1r2") && this.clicks.includes("c1r3") ||
+      this.clicks.includes("c2r1") && this.clicks.includes("c2r2") && this.clicks.includes("c2r3") ||
+      this.clicks.includes("c1r2") && this.clicks.includes("c2r2") && this.clicks.includes("c3r2") ||
+      this.clicks.includes("c1r1") && this.clicks.includes("c2r2") && this.clicks.includes("c3r3") ||
+      this.clicks.includes("c3r1") && this.clicks.includes("c2r2") && this.clicks.includes("c1r3")    ) {
+    return true;
+  } else {
+    return false;
   }
 }
 
