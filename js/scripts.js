@@ -21,17 +21,22 @@ function displayMark(id, symbol) {
 // this function displays
 function declareWinner(winner) {
   console.log(winner);
-  if (winner === "X") {
-    $("#game-result").text("Player X wins!");
-    $(".end").show();
-  } else if (winner === "O") {
-    $("#game-result").text("Player O wins!");
-    $(".end").show();
+  if (!$("#game-result").text()) {
+    if (winner === "X") {
+      $("#game-result").text($("#playerX").text() + " wins!");
+      $(".end").show();
+    } else if (winner === "O") {
+      $("#game-result").text($("#playerO").text() + " wins!");
+      $(".end").show();
+    }
   }
 }
+
 function declareTie() {
-  $("#game-result").text("It's a tie!");
-  $(".end").show();
+  if (!$("#game-result").text()) {
+    $("#game-result").text("It's a tie!");
+    $(".end").show();
+  }
 }
 $(document).ready(function() {
   // click listener is what tells us which space on the board has been clicked
@@ -41,6 +46,10 @@ $(document).ready(function() {
     // this is where we take the input values (player's names) and assign them to the name property of each player object
     myGame.playerX.name = $("#playerXname").val();
     myGame.playerO.name = $("#playerOname").val();
+    $(".gameForm").hide();
+    $("#playerX").text(myGame.playerX.name);
+    $("#playerO").text(myGame.playerO.name);
+    $("#players").show();
     $(".grid").addClass("gridDisplay").show();
   });
   // this rematch  click function tells the page what to do when the rematch button is clicked
@@ -52,6 +61,9 @@ $(document).ready(function() {
   });
   // this new game function tells the page what to do when the new game button is clicked
   $("#newgame").click(function() {
+    $("#gameForm").show();
+    $("#players").hide();
+    $(".grid").hide();
     $(".end").hide();
     myGame.emptyClicks();
     $(".space").text("");
@@ -81,7 +93,7 @@ Game.prototype.logClicks = function(htmlID) {
     }
     // this if statement calls the findWinner function to see if playerX has won. If findWinner returns true, it calls the declare winner function. We made the declareWInner function specicifcally to be called here- its in the front end because its pops up on the UI (changes the HTML).
     if (this.playerX.findWinner()) {
-    declareWinner(this.playerX.symbol);
+      declareWinner(this.playerX.symbol);
     }
   } else if (this.clickCounter % 2 === 1) {
     this.playerO.clicks.push(htmlID);
@@ -107,18 +119,19 @@ Game.prototype.emptyClicks = function() {
 Player.prototype.findWinner = function() {
   console.log(this.clicks);
   if (this.clicks.includes("c1r1") && this.clicks.includes("c2r1") && this.clicks.includes("c3r1") ||
-      this.clicks.includes("c3r1") && this.clicks.includes("c3r2") && this.clicks.includes("c3r3") ||
-      this.clicks.includes("c1r3") && this.clicks.includes("c2r3") && this.clicks.includes("c3r3") ||
-      this.clicks.includes("c1r1") && this.clicks.includes("c1r2") && this.clicks.includes("c1r3") ||
-      this.clicks.includes("c2r1") && this.clicks.includes("c2r2") && this.clicks.includes("c2r3") ||
-      this.clicks.includes("c1r2") && this.clicks.includes("c2r2") && this.clicks.includes("c3r2") ||
-      this.clicks.includes("c1r1") && this.clicks.includes("c2r2") && this.clicks.includes("c3r3") ||
-      this.clicks.includes("c3r1") && this.clicks.includes("c2r2") && this.clicks.includes("c1r3")) {
+    this.clicks.includes("c3r1") && this.clicks.includes("c3r2") && this.clicks.includes("c3r3") ||
+    this.clicks.includes("c1r3") && this.clicks.includes("c2r3") && this.clicks.includes("c3r3") ||
+    this.clicks.includes("c1r1") && this.clicks.includes("c1r2") && this.clicks.includes("c1r3") ||
+    this.clicks.includes("c2r1") && this.clicks.includes("c2r2") && this.clicks.includes("c2r3") ||
+    this.clicks.includes("c1r2") && this.clicks.includes("c2r2") && this.clicks.includes("c3r2") ||
+    this.clicks.includes("c1r1") && this.clicks.includes("c2r2") && this.clicks.includes("c3r3") ||
+    this.clicks.includes("c3r1") && this.clicks.includes("c2r2") && this.clicks.includes("c1r3")) {
     return true;
   } else {
     return false;
   }
 }
+
 function Player(symbol) {
   this.name;
   this.symbol = symbol;
