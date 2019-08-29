@@ -30,6 +30,10 @@ function declareWinner(winner) {
   }
 }
 
+function declareTie() {
+  $(".end").show();
+}
+
 $(document).ready(function() {
   $(".grid").hide();
   // click listener is what tells us which space on the board has been clicked
@@ -47,7 +51,11 @@ $(document).ready(function() {
     $(".space").text("");
   })
   $("#newgame").click(function() {
-
+    $(".end").hide();
+    myGame.emptyClicks();
+    $(".space").text("");
+    $("input#playerXname").val("");
+    $("input#playerOname").val("");
   })
 });
 
@@ -83,6 +91,9 @@ Game.prototype.logClicks = function(htmlID) {
     if (this.playerO.findWinner()) {
       declareWinner(this.playerO.symbol);
     }
+  }
+  if (this.clickCounter === 9) {
+    declareTie();
   }
 }
 
